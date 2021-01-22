@@ -27,12 +27,15 @@
 						<div class="header__text">UX | UI designer <br> 24 years old, Minsk</div>
 						<div class="header__lang">RU <span class="active-lang">| ENG</span></div>
 					</div>
-					<div class="header__image"><img src="img/header/01.jpg" ></div>
+					<picture class="header__image">
+						<source srcset="img/header/02.jpg" type="" media="(max-width: 670px)">
+						<img src="img/header/01.jpg">
+					</picture>
 				</div>
 			</header>
 			<section class="about">
 				<div class="container">				
-					<h2 class="about__title subtitle">About me</h2>
+					<h2 class="about__title subtitle"><a name="about">About me</a></h2>
 					<div class="about__body">
 						<p>
 							Hi, I'm Denis – UX/UI designer from Minsk. <br>
@@ -50,7 +53,7 @@
 			</section>
 			<section class="skills">
 				<div class="container">
-					<h2 class="skills__title subtitle">Skills</h2>
+					<h2 class="skills__title subtitle"><a name="skills">Skills</a></h2>
 					<div class="skills__text">I work in such programs as</div>
 					<div class="skills__row">
 						<div class="skills__item"><img src="img/skills/01.png" alt=""></div>
@@ -62,7 +65,7 @@
 			</section>
 			<section class="portfolio">
 				<div class="container">
-					<div class="portfolio__title subtitle">Portfolio</div>
+					<div class="portfolio__title subtitle"><a name="portfolio">Portfolio</a></div>
 					<div class="portfolio__item">
 						<div class="portfolio__img"><img src="img/portfolio/01.jpg" alt=""></div>
 						<div class="portfolio__link"><a href="#">Online fashion store - Homepage</a></div>
@@ -80,7 +83,7 @@
 			<footer class="contacts">
 				<div class="container">
 					<div class="contacts__row">
-						<div class="contacts__title subtitle">Contacts</div>
+						<div class="contacts__title subtitle"><a name="contacts">Contacts</a></div>
 						<div class="contacts__text">Want to know more or just chat? <br> You are welcome!
 						</div>
 						<a href="#send" class="contacts__btn">Send message</a>
