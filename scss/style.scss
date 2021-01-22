@@ -4,6 +4,14 @@
 @import "../fonts/gilroy-bold.css";
 @import "../fonts/gilroy-medium.css";
 
+// ====ДЛЯ ПЛАВНОЙ ПРОКРУТКИ К РАЗДЕЛАМ====================================
+html{
+	scroll-behavior: smooth;
+}
+// ====ДЛЯ ОТСТУПА ПРИ ПРОКРУТКЕ К РАЗДЕЛУ=================================
+:target{
+	scroll-margin-top: 120px;
+}
 body{
 	font-family: 'Gilroy-Medium';
 	color: #070707;
@@ -35,7 +43,6 @@ body{
 	top: 0;
 	z-index: 1;
 	background: #fff;
-	
 	&__row{
 		@media (max-width: 670px) {
 			flex-direction: column;
@@ -64,8 +71,12 @@ body{
 		padding-right: 0;
 		}
 	}
+	// выравнивание меню, отключение паддинга при выстраивании в столбик
 	a{
 		padding: 5px;
+		@media (max-width: 670px) {
+			padding: 0;
+		}
 	} 
 	.active{
 		font-family: Gilroy-Bold;
@@ -305,6 +316,15 @@ body{
 		margin: 0 0 25px 0;
 	}
 	&__btn {
+		&:visited{
+			color: #fff;
+		}
+		&:hover{
+			transition: all 0.3s;
+			border: 1px solid #000;
+			background: #F6F6F6;
+			color: black;
+		}
 		display: flex;
 		color: #fff;
 		justify-content: center;
@@ -312,11 +332,12 @@ body{
 		margin: 0 0 85px 0;
 		width: 180px;
 		height: 45px;
-		background: #000;
+		background-color: #000;
 		border-radius: 110px;
+		transition: all 0.2s;
 		@media (max-width: 500px) {
 			margin: 0 0 60px 0;
-		}
+		}	
 	}
 	&__social-row {
 		display: flex;
@@ -324,6 +345,15 @@ body{
 		margin: 0 0 40px 0;
 	}
 	&__social-item {
+		position: relative;
+		top: 0;
+		left: 0;
+
+		&:hover{
+			transition: all 0.1s;
+			top: -3px;
+			opacity: 0.8;
+		}
 		&:last-child{
 			margin: 0;
 		}
