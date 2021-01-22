@@ -75,6 +75,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*Конец обнуления*/
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  scroll-margin-top: 120px;
+}
+
 body {
   font-family: "Gilroy-Medium";
   color: #070707;
@@ -143,6 +151,11 @@ body {
 }
 .menu a {
   padding: 5px;
+}
+@media (max-width: 670px) {
+  .menu a {
+    padding: 0;
+  }
 }
 .menu .active {
   font-family: Gilroy-Bold;
@@ -444,8 +457,18 @@ body {
   margin: 0 0 85px 0;
   width: 180px;
   height: 45px;
-  background: #000;
+  background-color: #000;
   border-radius: 110px;
+  transition: all 0.2s;
+}
+.contacts__btn:visited {
+  color: #fff;
+}
+.contacts__btn:hover {
+  transition: all 0.3s;
+  border: 1px solid #000;
+  background: #F6F6F6;
+  color: black;
 }
 @media (max-width: 500px) {
   .contacts__btn {
@@ -458,7 +481,15 @@ body {
   margin: 0 0 40px 0;
 }
 .contacts__social-item {
+  position: relative;
+  top: 0;
+  left: 0;
   margin: 0 40px 0 0;
+}
+.contacts__social-item:hover {
+  transition: all 0.1s;
+  top: -3px;
+  opacity: 0.8;
 }
 .contacts__social-item:last-child {
   margin: 0;
