@@ -1,0 +1,338 @@
+// Подключение обнуляющих стилей
+@import "nullstyle.scss";
+// подключение шрифтов
+@import "../fonts/gilroy-bold.css";
+@import "../fonts/gilroy-medium.css";
+
+body{
+	font-family: 'Gilroy-Medium';
+	color: #070707;
+	font-size: 18px;
+	line-height: 22px;
+}
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+.container {
+	// Расчёт ширины контейнера в процентах
+	width: ( 945px * 100% ) / 1445px;
+	max-width: 1445px;
+	margin: auto;
+	@media (max-width: 670px) {
+		width: 100%;
+		padding: 0 10%;	
+	}
+	@media (max-width: 500px) {
+		width: 100%;
+		padding: 0 15px;	
+	}	
+}
+// =============================Стили МЕНЮ=================================
+.menu {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background: #fff;
+	
+	&__row{
+		@media (max-width: 670px) {
+			flex-direction: column;
+			padding: 15px 0;
+		}
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		//flex-wrap: wrap;
+		padding: 30px 0;
+		border-bottom: 1px solid #828282;
+	}
+	&__item {
+		font-size: 18px;
+		line-height: 22px;
+		color: #828282;
+		&:hover{
+		transition: all 0.3s;
+		font-family: Gilroy-Bold;
+		color: #070707;
+		}
+		&:first-child a{
+		padding-left: 0;
+		}
+		&:last-child a{
+		padding-right: 0;
+		}
+	}
+	a{
+		padding: 5px;
+	} 
+	.active{
+		font-family: Gilroy-Bold;
+		color: #070707;
+	}
+}
+// ======================Стили оболочки контента от меню до футера============
+.content {
+	flex: 1 1 auto;
+}
+// ==========================Стили ПЕРВОГО ЭКРАНА=================================
+.header {
+	&__body {
+		@media (max-width: 1024px) {
+			padding: 30px 0;
+		}
+		@media (max-width: 670px) {
+			padding: 20px 0;
+		}
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 40px 0;
+	}
+	&__title {
+		@media (max-width: 1024px) {
+			font-size:40px;
+			line-height: 45px;
+		}
+		@media (max-width: 670px) {
+			font-size:34px;
+			line-height: 35px;
+		}
+		font-family: Gilroy-Bold;
+		font-size: 47.3392px;
+		line-height: 59px;
+		color: #070707;
+		margin-right: 15px;
+	}
+	&__text {
+		// text-align: justify;
+		font-size: 18px;
+		line-height: 22px;
+		color: #070707;
+		// padding-top: 45px;
+	}
+	&__lang {
+//================Брейкпоинт для скрытия языков и переноса их в бургер=============		
+		@media (max-width: 550px) {
+			display: none;
+		}
+		margin-right: -27px;
+		font-family: Gilroy-Bold;
+		font-size: 16px;
+		line-height: 20px;
+		color: #828282;
+		transform: rotate(-90deg);
+		.active-lang{
+			color: #000;
+		}
+	}
+	&__image{
+		margin: 0 0 100px 0;
+		@media (max-width: 1024px) {
+			margin: 0 0 70px 0;
+		}
+		@media (max-width: 770px) {
+			margin: 0 0 50px 0;
+		}
+		@media (max-width: 500px) {
+			margin: 0 0 20px 0;
+		}
+	}
+	&__image img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+// ============================СТИЛИ ABOUT================================== 
+.about {
+	padding: 120px 0 110px 0;
+	background: #F6F6F6;
+	@media (max-width: 1024px) {
+		padding: 80px 0 70px 0;
+	}
+	@media (max-width: 770px) {
+		padding: 60px 0 50px 0;
+	}
+	@media (max-width: 500px) {
+		padding: 25px 0 20px 0;
+	}
+	&__title {
+		margin:0 0 15px 0;
+	}
+	&__body {
+		text-align: center;
+		p{
+			margin:0 0 30px 0;
+			@media (max-width: 500px) {
+				margin: 0 0 15px 0;
+			}
+		}
+	}
+}
+//==================ОБЩИЕ СТИЛИ ЗАГОЛОВКОВ ВТОРОГО УРОВНЯ========
+.subtitle {
+	font-family: Gilroy-Bold;
+	font-size: 34px;
+	line-height: 42px;
+	text-align: center;
+	color: #070707;
+}
+//=======================СТИЛИ SKILLS==================================
+.skills {
+	padding: 100px 0;
+	@media (max-width: 1024px) {
+		padding: 70px 0;
+	}
+	@media (max-width: 770px) {
+		padding: 50px 0;
+	}
+	@media (max-width: 500px) {
+		padding: 30px 0;
+	}
+	&__title {
+		margin: 0 0 60px 0;
+		@media (max-width: 1024px) {
+			margin: 0 0 40px 0;
+		}
+		@media (max-width: 770px) {
+			margin: 0 0 20px 0;
+		}
+	}
+	&__text {
+		text-align: center;
+		margin: 0 0 75px 0;
+		@media (max-width: 1024px) {
+			margin: 0 0 50px 0;
+		}
+		@media (max-width: 770px) {
+			margin: 0 0 30px 0;
+		}
+	}
+	&__row {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	&__item {
+		margin: 0 15px 35px 15px;
+	}
+}
+// =================СТИЛИ ПОРТФОЛИО======================================
+.portfolio {
+	padding: 100px 0;
+	background: #F6F6F6;
+	@media (max-width: 1024px) {
+		padding: 70px 0;
+	}
+	@media (max-width: 770px) {
+		padding: 50px 0;
+	}
+	@media (max-width: 500px) {
+		padding: 40px 0 30px 0;
+	}
+	&__title {
+		margin: 0 0 40px 0;
+		@media (max-width: 1024px) {
+			margin: 0 0 30px 0;
+		}
+		@media (max-width: 770px) {
+			margin: 0 0 20px 0;
+		}
+	}
+	&__item {
+		&:last-child{
+			margin: 0;
+		}
+		margin: 0 0 90px 0;
+		@media (max-width: 1024px) {
+			margin: 0 0 70px 0;
+		}
+		@media (max-width: 770px) {
+			margin: 0 0 40px 0;
+		}
+	}
+	&__img {
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		margin: 0 0 40px 0;
+		@media (max-width: 1024px) {
+			margin: 0 0 30px 0;
+		}
+		@media (max-width: 770px) {
+			margin: 0 0 10px 0;
+		}
+	}
+	&__link {
+		text-align: center;
+		text-decoration: underline;
+		&:hover{
+			text-decoration: none;
+		}
+		& a{
+			padding: 5px;
+		}
+	}
+}
+
+//===============================СТИЛЬ КОНТАКТОВ (FOOTER)======================
+.contacts {
+	padding: 100px 0 120px 0;
+	@media (max-width: 1024px) {
+		padding: 70px 0;
+	}
+	@media (max-width: 770px) {
+		padding: 50px 0;
+	}
+	@media (max-width: 500px) {
+		padding: 30px 0;
+	}
+	&__row{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	&__title {
+		margin: 0 0 15px 0;
+	}
+	&__text {
+		text-align: center;
+		margin: 0 0 25px 0;
+	}
+	&__btn {
+		display: flex;
+		color: #fff;
+		justify-content: center;
+		align-items: center;
+		margin: 0 0 85px 0;
+		width: 180px;
+		height: 45px;
+		background: #000;
+		border-radius: 110px;
+		@media (max-width: 500px) {
+			margin: 0 0 60px 0;
+		}
+	}
+	&__social-row {
+		display: flex;
+		justify-content: center;
+		margin: 0 0 40px 0;
+	}
+	&__social-item {
+		&:last-child{
+			margin: 0;
+		}
+		margin: 0 40px 0 0;
+	}
+	&__footer{
+		font-size: 14px;
+		line-height: 17px;
+		text-align: center;
+		color: #828282;
+	}
+}
