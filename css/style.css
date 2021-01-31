@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*Обнуление*/
-@import "../fonts/gilroy-bold.css";
-@import "../fonts/gilroy-medium.css";
+@import '../fonts/gilroy-bold.css';
+@import '../fonts/gilroy-medium.css';
 * {
   padding: 0;
   margin: 0;
@@ -90,6 +90,12 @@ body {
   line-height: 22px;
 }
 
+@media (max-width: 670px) {
+  #body.lock {
+    overflow: hidden;
+  }
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -107,18 +113,120 @@ body {
     padding: 0 10%;
   }
 }
-@media (max-width: 500px) {
-  .container {
-    width: 100%;
-    padding: 0 15px;
-  }
-}
 
 .menu {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1;
   background: #fff;
+}
+.menu:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 2;
+}
+@media (min-width: 671px) {
+  .menu:before {
+    display: none;
+  }
+}
+.menu__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+@media (max-width: 670px) {
+  .menu__body {
+    padding: 5px 0;
+    border-bottom: 1px solid #828282;
+  }
+}
+.menu__logo {
+  z-index: 3;
+  font-family: "Gilroy-Bold";
+}
+@media (min-width: 671px) {
+  .menu__logo {
+    display: none;
+  }
+}
+.menu #menu__burger.active:before {
+  transform: rotate(45deg);
+  top: 9px;
+}
+.menu #menu__burger.active:after {
+  transform: rotate(-45deg);
+  bottom: 9px;
+}
+.menu #menu__burger.active span {
+  transform: scale(0);
+}
+@media (max-width: 670px) {
+  .menu #menu__burger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    z-index: 3;
+  }
+  .menu #menu__burger span {
+    position: absolute;
+    background-color: #000;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    top: 9px;
+    transition: 0.3s ease 0s;
+  }
+  .menu #menu__burger:before, .menu #menu__burger:after {
+    content: "";
+    background-color: #000;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    transition: 0.3s ease 0s;
+  }
+  .menu #menu__burger:before {
+    top: 0;
+  }
+  .menu #menu__burger:after {
+    bottom: 0;
+  }
+}
+@media (min-width: 671px) {
+  .menu #menu__burger {
+    display: none;
+  }
+}
+.menu #menu__wrapper.active {
+  top: 0;
+}
+.menu #menu__wrapper {
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 670px) {
+  .menu #menu__wrapper {
+    position: fixed;
+    top: -1000%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1;
+    padding: 100px 0 0 0;
+    overflow: auto;
+    transition: 0.3s ease 0s;
+  }
 }
 .menu__row {
   display: flex;
@@ -129,14 +237,41 @@ body {
 }
 @media (max-width: 670px) {
   .menu__row {
-    flex-direction: column;
-    padding: 15px 0;
+    padding: 0;
+    border: none;
+    display: block;
+  }
+}
+@media (min-width: 671px) {
+  .menu__row {
+    width: 100%;
   }
 }
 .menu__item {
   font-size: 18px;
   line-height: 22px;
   color: #828282;
+}
+@media (max-width: 670px) {
+  .menu__item {
+    font-size: 34px;
+    line-height: 42px;
+    color: #828282;
+    padding: 0 10% 50px 10%;
+  }
+}
+.menu__item a {
+  padding: 5px;
+}
+@media (max-width: 670px) {
+  .menu__item a {
+    padding: 0;
+  }
+}
+.menu__item:active {
+  transition: all 0.3s;
+  font-family: Gilroy-Bold;
+  color: #070707;
 }
 .menu__item:hover {
   transition: all 0.3s;
@@ -149,21 +284,10 @@ body {
 .menu__item:last-child a {
   padding-right: 0;
 }
-.menu a {
-  padding: 5px;
-}
-@media (max-width: 670px) {
-  .menu a {
-    padding: 0;
-  }
-}
-.menu .active {
-  font-family: Gilroy-Bold;
-  color: #070707;
-}
 
 .content {
   flex: 1 1 auto;
+  padding-top: 70px;
 }
 
 .header__body {
@@ -240,7 +364,7 @@ body {
     margin: 0 0 20px 0;
   }
 }
-.header__image img {
+.header img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -248,7 +372,7 @@ body {
 
 .about {
   padding: 120px 0 110px 0;
-  background: #F6F6F6;
+  background: #f6f6f6;
 }
 @media (max-width: 1024px) {
   .about {
@@ -344,7 +468,7 @@ body {
 
 .portfolio {
   padding: 100px 0;
-  background: #F6F6F6;
+  background: #f6f6f6;
 }
 @media (max-width: 1024px) {
   .portfolio {
@@ -467,7 +591,7 @@ body {
 .contacts__btn:hover {
   transition: all 0.3s;
   border: 1px solid #000;
-  background: #F6F6F6;
+  background: #f6f6f6;
   color: black;
 }
 @media (max-width: 500px) {

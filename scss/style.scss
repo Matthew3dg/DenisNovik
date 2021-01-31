@@ -1,22 +1,27 @@
 // Подключение обнуляющих стилей
-@import "nullstyle.scss";
+@import 'nullstyle.scss';
 // подключение шрифтов
-@import "../fonts/gilroy-bold.css";
-@import "../fonts/gilroy-medium.css";
+@import '../fonts/gilroy-bold.css';
+@import '../fonts/gilroy-medium.css';
 
 // ====ДЛЯ ПЛАВНОЙ ПРОКРУТКИ К РАЗДЕЛАМ====================================
-html{
+html {
 	scroll-behavior: smooth;
 }
 // ====ДЛЯ ОТСТУПА ПРИ ПРОКРУТКЕ К РАЗДЕЛУ=================================
-:target{
+:target {
 	scroll-margin-top: 120px;
 }
-body{
+body {
 	font-family: 'Gilroy-Medium';
 	color: #070707;
 	font-size: 18px;
 	line-height: 22px;
+}
+#body.lock {
+	@media (max-width: 670px) {
+		overflow: hidden;
+	}
 }
 .wrapper {
 	display: flex;
@@ -25,67 +30,180 @@ body{
 }
 .container {
 	// Расчёт ширины контейнера в процентах
-	width: ( 945px * 100% ) / 1445px;
+	width: (945px * 100%) / 1445px;
 	max-width: 1445px;
 	margin: auto;
 	@media (max-width: 670px) {
 		width: 100%;
-		padding: 0 10%;	
+		padding: 0 10%;
 	}
-	@media (max-width: 500px) {
-		width: 100%;
-		padding: 0 15px;	
-	}	
 }
 // =============================Стили МЕНЮ=================================
 .menu {
-	position: sticky;
+	position: fixed;
 	top: 0;
+	left: 0;
+	width: 100%;
 	z-index: 1;
 	background: #fff;
-	&__row{
-		@media (max-width: 670px) {
-			flex-direction: column;
-			padding: 15px 0;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #fff;
+		z-index: 2;
+
+		@media (min-width: 671px) {
+			display: none;
 		}
+	}
+	&__body {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		//flex-wrap: wrap;
+		position: relative;
+		@media (max-width: 670px) {
+			padding: 5px 0;
+			border-bottom: 1px solid #828282;
+		}
+	}
+	&__logo {
+		z-index: 3;
+		font-family: 'Gilroy-Bold';
+		//Убираем лого при PC виде
+		@media (min-width: 671px) {
+			display: none;
+		}
+	}
+	#menu__burger.active:before {
+		transform: rotate(45deg);
+		top: 9px;
+	}
+	#menu__burger.active:after {
+		transform: rotate(-45deg);
+		bottom: 9px;
+	}
+	#menu__burger.active span {
+		transform: scale(0);
+	}
+	#menu__burger {
+		@media (max-width: 670px) {
+			display: block;
+			position: relative;
+			width: 30px;
+			height: 20px;
+			z-index: 3;
+			// средняя полоска
+			& span {
+				position: absolute;
+				background-color: #000;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				top: 9px;
+				transition: 0.3s ease 0s;
+			}
+			//общие стили для верхней и нижней полоски
+			&:before,
+			&:after {
+				content: '';
+				background-color: #000;
+				position: absolute;
+				width: 100%;
+				height: 2px;
+				left: 0;
+				transition: 0.3s ease 0s;
+			}
+			//верхняя полоска
+			&:before {
+				top: 0;
+			}
+			//нижняя полоска
+			&:after {
+				bottom: 0;
+			}
+		}
+		@media (min-width: 671px) {
+			display: none;
+		}
+	}
+	#menu__wrapper.active {
+		top: 0;
+	}
+
+	#menu__wrapper {
+		width: 100%;
+		height: 100%;
+
+		@media (max-width: 670px) {
+			position: fixed;
+			top: -1000%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #fff;
+			z-index: 1;
+			padding: 100px 0 0 0;
+			overflow: auto;
+			transition: 0.3s ease 0s;
+		}
+	}
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		padding: 30px 0;
 		border-bottom: 1px solid #828282;
+		@media (max-width: 670px) {
+			padding: 0;
+			border: none;
+			display: block;
+		}
+		@media (min-width: 671px) {
+			width: 100%;
+		}
 	}
 	&__item {
 		font-size: 18px;
 		line-height: 22px;
 		color: #828282;
-		&:hover{
-		transition: all 0.3s;
-		font-family: Gilroy-Bold;
-		color: #070707;
-		}
-		&:first-child a{
-		padding-left: 0;
-		}
-		&:last-child a{
-		padding-right: 0;
-		}
-	}
-	// выравнивание меню, отключение паддинга при выстраивании в столбик
-	a{
-		padding: 5px;
 		@media (max-width: 670px) {
-			padding: 0;
+			font-size: 34px;
+			line-height: 42px;
+			color: #828282;
+			padding: 0 10% 50px 10%;
 		}
-	} 
-	.active{
-		font-family: Gilroy-Bold;
-		color: #070707;
+		a {
+			padding: 5px;
+			@media (max-width: 670px) {
+				padding: 0;
+			}
+		}
+		&:active {
+			transition: all 0.3s;
+			font-family: Gilroy-Bold;
+			color: #070707;
+		}
+		&:hover {
+			transition: all 0.3s;
+			font-family: Gilroy-Bold;
+			color: #070707;
+		}
+		&:first-child a {
+			padding-left: 0;
+		}
+		&:last-child a {
+			padding-right: 0;
+		}
 	}
 }
 // ======================Стили оболочки контента от меню до футера============
 .content {
 	flex: 1 1 auto;
+	padding-top: 70px;
 }
 // ==========================Стили ПЕРВОГО ЭКРАНА=================================
 .header {
@@ -103,11 +221,11 @@ body{
 	}
 	&__title {
 		@media (max-width: 1024px) {
-			font-size:40px;
+			font-size: 40px;
 			line-height: 45px;
 		}
 		@media (max-width: 670px) {
-			font-size:34px;
+			font-size: 34px;
 			line-height: 35px;
 		}
 		font-family: Gilroy-Bold;
@@ -124,7 +242,7 @@ body{
 		// padding-top: 45px;
 	}
 	&__lang {
-//================Брейкпоинт для скрытия языков и переноса их в бургер=============		
+		//================Брейкпоинт для скрытия языков и переноса их в бургер=============
 		@media (max-width: 550px) {
 			display: none;
 		}
@@ -134,11 +252,11 @@ body{
 		line-height: 20px;
 		color: #828282;
 		transform: rotate(-90deg);
-		.active-lang{
+		.active-lang {
 			color: #000;
 		}
 	}
-	&__image{
+	&__image {
 		margin: 0 0 100px 0;
 		@media (max-width: 1024px) {
 			margin: 0 0 70px 0;
@@ -150,17 +268,17 @@ body{
 			margin: 0 0 20px 0;
 		}
 	}
-	&__image img{
+	& img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
 }
 
-// ============================СТИЛИ ABOUT================================== 
+// ============================СТИЛИ ABOUT==================================
 .about {
 	padding: 120px 0 110px 0;
-	background: #F6F6F6;
+	background: #f6f6f6;
 	@media (max-width: 1024px) {
 		padding: 80px 0 70px 0;
 	}
@@ -171,12 +289,12 @@ body{
 		padding: 25px 0 20px 0;
 	}
 	&__title {
-		margin:0 0 15px 0;
+		margin: 0 0 15px 0;
 	}
 	&__body {
 		text-align: center;
-		p{
-			margin:0 0 30px 0;
+		p {
+			margin: 0 0 30px 0;
 			@media (max-width: 500px) {
 				margin: 0 0 15px 0;
 			}
@@ -234,7 +352,7 @@ body{
 // =================СТИЛИ ПОРТФОЛИО======================================
 .portfolio {
 	padding: 100px 0;
-	background: #F6F6F6;
+	background: #f6f6f6;
 	@media (max-width: 1024px) {
 		padding: 70px 0;
 	}
@@ -254,7 +372,7 @@ body{
 		}
 	}
 	&__item {
-		&:last-child{
+		&:last-child {
 			margin: 0;
 		}
 		margin: 0 0 90px 0;
@@ -266,7 +384,7 @@ body{
 		}
 	}
 	&__img {
-		img{
+		img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
@@ -282,10 +400,10 @@ body{
 	&__link {
 		text-align: center;
 		text-decoration: underline;
-		&:hover{
+		&:hover {
 			text-decoration: none;
 		}
-		& a{
+		& a {
 			padding: 5px;
 		}
 	}
@@ -303,7 +421,7 @@ body{
 	@media (max-width: 500px) {
 		padding: 30px 0;
 	}
-	&__row{
+	&__row {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -316,13 +434,13 @@ body{
 		margin: 0 0 25px 0;
 	}
 	&__btn {
-		&:visited{
+		&:visited {
 			color: #fff;
 		}
-		&:hover{
+		&:hover {
 			transition: all 0.3s;
 			border: 1px solid #000;
-			background: #F6F6F6;
+			background: #f6f6f6;
 			color: black;
 		}
 		display: flex;
@@ -337,7 +455,7 @@ body{
 		transition: all 0.2s;
 		@media (max-width: 500px) {
 			margin: 0 0 60px 0;
-		}	
+		}
 	}
 	&__social-row {
 		display: flex;
@@ -349,17 +467,17 @@ body{
 		top: 0;
 		left: 0;
 
-		&:hover{
+		&:hover {
 			transition: all 0.1s;
 			top: -3px;
 			opacity: 0.8;
 		}
-		&:last-child{
+		&:last-child {
 			margin: 0;
 		}
 		margin: 0 40px 0 0;
 	}
-	&__footer{
+	&__footer {
 		font-size: 14px;
 		line-height: 17px;
 		text-align: center;
